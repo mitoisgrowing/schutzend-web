@@ -70,7 +70,7 @@ export function Inicio() {
             style={{ x: ojoX, y: ojoY }}
             className="pointer-events-none absolute left-1/2 -top-14 md:-top-20 w-24 md:w-36 -ml-12 md:-ml-18"
           >
-            <img src="/img/ojo.webp" alt="" className="w-full parpadeo boil" />
+            <img src="/img/ojo.webp" alt="" className="w-full boil" />
           </motion.div>
           <Deco
             src="/img/flecha-verde.webp"

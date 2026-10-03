@@ -195,7 +195,7 @@ export function MenuMovil({ s }: { s: Seccion }) {
         {open ? (
           <span className="boil font-hand text-3xl leading-none text-white">✕</span>
         ) : (
-          <img src="/img/ojo.webp" alt="" className="w-10 parpadeo" />
+          <img src="/img/ojo.webp" alt="" className="w-10" />
         )}
       </button>
       <AnimatePresence>
