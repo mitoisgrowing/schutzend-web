@@ -3,7 +3,6 @@ import { useEffect, type CSSProperties, type ReactNode } from "react";
 import { Boton, Deco, Ext, IconoInsta, IconoMail, Nav, Vista, pop, stagger } from "./components/ui";
 import { BichoAzul, Bichito } from "./components/Bichos";
 import { Ondas } from "./components/Ondas";
-import { Susurros } from "./components/Atmosfera";
 import { LINKS, ig } from "./links";
 import { PROYECTOS } from "./proyectos";
 
@@ -55,7 +54,6 @@ export function Inicio() {
 
   return (
     <Vista className="bg-black md:overflow-hidden">
-      <Susurros frases={[{t:"¿qué miras?",x:"8%",y:"14%",r:-8},{t:"aquí no hay nada",x:"76%",y:"82%",r:5},{t:"sigue buscando",x:"82%",y:"12%",r:7}]} />
       <motion.div
         aria-hidden
         className="absolute -inset-10 bg-cover bg-center boil-suave"
@@ -115,7 +113,6 @@ export function Inicio() {
 export function SobreMi() {
   return (
     <Vista style={{ background: "linear-gradient(180deg,#000 0%,#050302 40%,#1f0d04 70%,#5e2a0a 92%,#7a3510 100%)" }}>
-      <Susurros frases={[{t:"no es lo que parece",x:"40%",y:"62%",r:-4}]} />
       <Nav
         left={["inicio"]}
         right={["colaboraciones"]}
@@ -212,7 +209,6 @@ function Producto({
 export function Tienda() {
   return (
     <Vista style={{ background: "linear-gradient(180deg,#2b2847 0%,#16132b 40%,#07060f 100%)" }}>
-      <Susurros frases={[{t:"todo tiene un precio",x:"40%",y:"88%",r:-3}]} />
       <Ondas />
       <Nav left={["contacto", "canales", "inicio"]} right={["colaboraciones", "productora"]} title="TIENDA" />
       <Deco src="/img/orquidea.webp" className="hidden md:block w-40 left-[15%] -bottom-2 mecer" />
@@ -248,7 +244,6 @@ function Canal({ url, img, imgClass, nombre, rot }: { url: string; img: string; 
 export function Canales() {
   return (
     <Vista style={{ background: "linear-gradient(180deg,#3d0809 0%,#1a0405 45%,#000 100%)" }}>
-      <Susurros frases={[{t:"te estamos viendo",x:"70%",y:"55%",r:6}]} />
       <Nav left={["contacto", "tienda"]} right={["inicio", "productora", "colaboraciones"]} title="CANALES" />
       <motion.div variants={stagger} className="relative z-10 flex flex-col gap-6 md:gap-9 px-4 md:px-14 pt-10 md:pt-12">
         <Canal url={LINKS.youtube.the} img="/img/av-the.webp" imgClass="w-14 md:w-24 border-4 border-white" nombre="@The_Schutzend" rot={-1.5} />
@@ -265,7 +260,6 @@ export function Contacto() {
   const rots = [-1.5, 1.2, -0.8, 1.5];
   return (
     <Vista className="bg-[linear-gradient(180deg,#141414,#000)]">
-      <Susurros frases={[{t:"nadie escribe cartas ya",x:"64%",y:"78%",r:-5}]} />
       <Deco src="/img/garabatos.webp" className="inset-0 w-full h-full object-cover opacity-[0.07]" />
       <Nav left={["tienda", "canales"]} right={["inicio", "productora"]} title="CONTACTO" />
       <motion.div variants={stagger} className="relative z-10 grid md:grid-cols-2 gap-4 md:gap-6 px-4 md:px-10 pt-8 md:pt-12 max-w-6xl">
@@ -350,7 +344,6 @@ export function Productora() {
       {/* 6a */}
       <section className={pantalla} style={{ background: fondoProd }}>
         <Luz />
-        <Susurros frases={[{ t: "corten.", x: "62%", y: "80%", r: -6 }]} />
         <Nav left={["tienda", "canales"]} right={["inicio", "contacto"]} />
         <motion.img
           variants={pop}
@@ -450,7 +443,6 @@ export function Productora() {
 export function Colaboraciones() {
   return (
     <Vista style={{ background: "linear-gradient(180deg,#06103d 0%,#030720 35%,#000 60%)" }}>
-      <Susurros frases={[{t:"¿te unes?",x:"78%",y:"70%",r:8}]} />
       <Nav left={["tienda", "canales"]} right={["inicio", "productora"]} title="COLABORACIONES" />
       <motion.div variants={stagger} className="relative z-10 px-4 md:px-8 font-serif font-semibold text-lg md:text-[2rem] leading-snug boil-suave">
         <motion.p variants={pop} className="text-center text-xl md:text-4xl mt-4">
@@ -494,7 +486,6 @@ export function ProyectoVista({ slug }: { slug: string }) {
   return (
     <Vista className="bg-black" style={{ background: "radial-gradient(ellipse at 50% 30%,#1a0d0a 0%,#070404 60%,#000 100%)" }}>
       <Deco src="/img/garabatos.webp" className="inset-0 w-full h-full object-cover opacity-[0.09] boil-suave" />
-      <Susurros frases={[{ t: "silencio, se rueda", x: "6%", y: "88%", r: -5 }]} />
       <a
         href="#productora"
         aria-label="Volver a la productora"

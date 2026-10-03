@@ -1,7 +1,7 @@
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import type { Seccion } from "./components/ui";
-import { Intro, MenuMovil } from "./components/Atmosfera";
+import { MenuMovil } from "./components/Atmosfera";
 import { Canales, Colaboraciones, Contacto, Inicio, Productora, ProyectoVista, SobreMi, Tienda } from "./views";
 import { PROYECTOS } from "./proyectos";
 
@@ -136,7 +136,6 @@ export default function App() {
       </AnimatePresence>
       <Progreso ruta={slug ?? s} />
       <MenuMovil s={s} />
-      <Intro />
       <div className="vineta" />
       <div className="grano" />
     </MotionConfig>
