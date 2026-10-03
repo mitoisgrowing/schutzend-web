@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 
 /* Texto que se escribe letra a letra */
 function Escribe({ texto }: { texto: string }) {
@@ -34,6 +34,25 @@ export function Bichito({
   const [on, setOn] = useState(false);
   const t = useRef<number | undefined>(undefined);
   const salto = useAnimationControls();
+  /* Mueve el bocadillo para que nunca se salga de la pantalla */
+  const bRef = useRef<HTMLDivElement>(null);
+  const [dx, setDx] = useState(0);
+  useLayoutEffect(() => {
+    if (!on) {
+      setDx(0);
+      return;
+    }
+    const el = bRef.current;
+    if (!el) return;
+    /* Medidas sin la escala de la animación de entrada */
+    const b = el.getBoundingClientRect();
+    const w = el.offsetWidth;
+    const left = bocadilloPos === "arriba" ? (b.left + b.right) / 2 - w / 2 : b.right - w;
+    const right = left + w;
+    const m = 10;
+    if (left < m) setDx(m - left);
+    else if (right > window.innerWidth - m) setDx(window.innerWidth - m - right);
+  }, [on, bocadilloPos]);
   const hablar = () => {
     setOn(true);
     salto.start({ y: [0, -26, 0, -8, 0], scaleY: [1, 0.85, 1.1, 0.95, 1], transition: { duration: 0.6 } });
@@ -60,6 +79,7 @@ export function Bichito({
         {on && (
           <motion.div
             key="b"
+            ref={bRef}
             initial={{ opacity: 0, scale: 0.4, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.6 }}
@@ -67,8 +87,8 @@ export function Bichito({
             className="bocadillo text-lg md:text-2xl"
             style={
               bocadilloPos === "arriba"
-                ? { bottom: "100%", left: "50%", x: "-50%", marginBottom: 14, transformOrigin: "bottom center" }
-                : ({ bottom: "75%", right: "70%", marginRight: 6, "--cola": "80%", transformOrigin: "bottom right" } as CSSProperties)
+                ? ({ bottom: "100%", left: "50%", x: "-50%", marginLeft: dx, marginBottom: 14, transformOrigin: "bottom center", "--cola": `calc(50% - ${dx}px - 9px)` } as CSSProperties)
+                : ({ bottom: "75%", right: "70%", marginRight: 6 - dx, "--cola": "80%", transformOrigin: "bottom right" } as CSSProperties)
             }
           >
             <Escribe texto={frase} />
