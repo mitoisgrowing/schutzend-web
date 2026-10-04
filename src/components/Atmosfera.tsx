@@ -149,7 +149,7 @@ export function Intro() {
     } catch {
       /* sin storage: no pasa nada */
     }
-    const id = window.setTimeout(() => setOn(false), 3200);
+    const id = window.setTimeout(() => setOn(false), 2000);
     return () => window.clearTimeout(id);
   }, [on]);
 
@@ -158,7 +158,7 @@ export function Intro() {
       {on && (
         <motion.div
           key="intro"
-          className="fixed inset-0 z-[80] flex flex-col items-center justify-center gap-6 bg-black"
+          className="fixed inset-0 z-[80] flex flex-col items-center justify-center bg-black"
           onClick={() => setOn(false)}
           exit={{ clipPath: "circle(0% at 50% 45%)", transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1] } }}
           initial={{ clipPath: "circle(150% at 50% 45%)" }}
@@ -169,16 +169,8 @@ export function Intro() {
             className="w-40 md:w-56 boil"
             initial={{ scaleY: 0.05, opacity: 0 }}
             animate={{ scaleY: [0.05, 0.05, 1, 0.1, 1], opacity: 1 }}
-            transition={{ duration: 1.8, times: [0, 0.3, 0.55, 0.65, 0.8] }}
+            transition={{ duration: 1.5, times: [0, 0.2, 0.5, 0.62, 0.8] }}
           />
-          <motion.p
-            className="boil font-hand text-2xl md:text-4xl text-white/80 tracking-widest"
-            initial={{ opacity: 0, filter: "blur(10px)" }}
-            animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ delay: 1.3, duration: 1 }}
-          >
-            entra… si te atreves
-          </motion.p>
         </motion.div>
       )}
     </AnimatePresence>
